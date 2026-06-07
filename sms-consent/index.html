@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<title>SMS Consent – Velvet Rope</title>
+<meta name="description" content="SMS consent form for Velvet Rope. Opt in to receive reservation confirmations, deposit reminders, event updates, ticket confirmations, and customer support notifications via SMS." />
+<meta name="robots" content="index, follow" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: #0c0c0e;
+  color: #d4d4d8;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+header {
+  background: #111114;
+  border-bottom: 1px solid #27272a;
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo { font-size: 1.1rem; font-weight: 700; letter-spacing: 0.12em; color: #ffffff; text-transform: uppercase; }
+.logo span { color: #8b5cf6; }
+nav a { color: #a1a1aa; font-size: 0.875rem; text-decoration: none; margin-left: 24px; }
+nav a:hover { color: #fff; }
+.container { max-width: 680px; margin: 0 auto; padding: 56px 24px 96px; }
+h1 { font-size: 1.875rem; font-weight: 700; color: #ffffff; margin-bottom: 8px; }
+.subtitle { font-size: 0.9375rem; color: #71717a; margin-bottom: 40px; line-height: 1.6; }
+a { color: #8b5cf6; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.badge {
+  display: inline-block;
+  background: #1e1b4b;
+  color: #a78bfa;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+.form-card {
+  background: #111114;
+  border: 1px solid #27272a;
+  border-radius: 12px;
+  padding: 32px 28px;
+  margin-bottom: 24px;
+}
+.form-group { margin-bottom: 20px; }
+label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #e4e4e7;
+  margin-bottom: 6px;
+}
+.required { color: #8b5cf6; margin-left: 2px; }
+input[type="text"],
+input[type="tel"] {
+  width: 100%;
+  background: #18181b;
+  border: 1px solid #3f3f46;
+  border-radius: 8px;
+  padding: 11px 14px;
+  font-size: 0.9375rem;
+  color: #f4f4f5;
+  outline: none;
+  transition: border-color 0.15s;
+  -webkit-appearance: none;
+}
+input[type="text"]:focus,
+input[type="tel"]:focus {
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 3px rgba(139,92,246,0.15);
+}
+input[type="text"]::placeholder,
+input[type="tel"]::placeholder { color: #52525b; }
+.consent-box {
+  background: #13131a;
+  border: 1px solid #3b3b52;
+  border-left: 4px solid #8b5cf6;
+  border-radius: 8px;
+  padding: 20px 20px 20px 16px;
+  margin-bottom: 20px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.consent-box input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  margin-top: 2px;
+  accent-color: #8b5cf6;
+  cursor: pointer;
+}
+.consent-label {
+  font-size: 0.9rem;
+  color: #c4c4cf;
+  line-height: 1.65;
+  cursor: pointer;
+}
+.consent-label strong { color: #ffffff; }
+.consent-label a { color: #8b5cf6; }
+.disclosures {
+  background: #0f0f18;
+  border: 1px solid #27272a;
+  border-radius: 8px;
+  padding: 16px 18px;
+  margin-bottom: 24px;
+}
+.disclosures ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.disclosures ul li {
+  font-size: 0.875rem;
+  color: #71717a;
+  padding: 4px 0;
+  padding-left: 18px;
+  position: relative;
+}
+.disclosures ul li::before {
+  content: '·';
+  position: absolute;
+  left: 6px;
+  color: #8b5cf6;
+  font-weight: 700;
+}
+.not-required {
+  font-size: 0.8125rem;
+  color: #52525b;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+.btn-submit {
+  width: 100%;
+  background: #8b5cf6;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  letter-spacing: 0.02em;
+}
+.btn-submit:hover { background: #7c3aed; }
+.btn-submit:active { transform: scale(0.99); }
+.btn-submit:disabled { background: #3f3f46; cursor: not-allowed; }
+.success-box {
+  display: none;
+  background: #052e16;
+  border: 1px solid #166534;
+  border-radius: 12px;
+  padding: 28px 24px;
+  text-align: center;
+  margin-bottom: 24px;
+}
+.success-box .check { font-size: 2.5rem; margin-bottom: 12px; }
+.success-box h2 { color: #4ade80; font-size: 1.25rem; margin-bottom: 8px; }
+.success-box p { color: #86efac; font-size: 0.9375rem; }
+.legal-links {
+  text-align: center;
+  font-size: 0.8125rem;
+  color: #52525b;
+  margin-top: 32px;
+}
+.legal-links a { color: #71717a; margin: 0 8px; }
+.legal-links a:hover { color: #a1a1aa; }
+footer {
+  text-align: center;
+  padding: 32px 24px;
+  color: #52525b;
+  font-size: 0.8125rem;
+  border-top: 1px solid #18181b;
+}
+footer a { color: #71717a; }
+footer a:hover { color: #a1a1aa; }
+@media (max-width: 640px) {
+  h1 { font-size: 1.5rem; }
+  .container { padding: 32px 16px 72px; }
+  .form-card { padding: 24px 18px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Velvet <span>Rope</span></div>
+  <nav>
+    <a href="/terms">Terms</a>
+    <a href="/privacy">Privacy</a>
+  </nav>
+</header>
+
+<div class="container">
+
+  <div class="badge">SMS Consent</div>
+  <h1>Velvet Rope SMS Consent</h1>
+  <p class="subtitle">
+    Velvet Rope uses SMS to send reservation confirmations, deposit reminders, event updates,
+    ticket confirmations, and customer support notifications to guests who have opted in.
+  </p>
+
+  <div class="success-box" id="successBox" role="alert" aria-live="polite">
+    <div class="check">&#10003;</div>
+    <h2>You're opted in!</h2>
+    <p>You'll receive SMS notifications for your reservations and events.<br />
+    Reply <strong>STOP</strong> at any time to unsubscribe.</p>
+  </div>
+
+  <form class="form-card" id="smsConsentForm" novalidate>
+
+    <div class="form-group">
+      <label for="fullName">Full Name <span class="required" aria-hidden="true">*</span></label>
+      <input
+        type="text"
+        id="fullName"
+        name="fullName"
+        placeholder="Jane Smith"
+        autocomplete="name"
+        required
+        aria-required="true"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="mobilePhone">Mobile Phone Number <span class="required" aria-hidden="true">*</span></label>
+      <input
+        type="tel"
+        id="mobilePhone"
+        name="mobilePhone"
+        placeholder="+1 (555) 000-0000"
+        autocomplete="tel"
+        required
+        aria-required="true"
+      />
+    </div>
+
+    <div class="consent-box">
+      <input
+        type="checkbox"
+        id="smsConsent"
+        name="smsConsent"
+        aria-required="true"
+      />
+      <label class="consent-label" for="smsConsent">
+        I agree to receive SMS messages from <strong>Velvet Rope</strong> regarding
+        reservations, deposits, event updates, ticket confirmations, and customer support.
+        Message frequency varies. Message and data rates may apply.
+        Reply <strong>STOP</strong> to opt out at any time.
+        Reply <strong>HELP</strong> for assistance.
+        View our <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a>
+        and <a href="/terms" target="_blank" rel="noopener">Terms of Service</a>.
+      </label>
+    </div>
+
+    <div class="disclosures" role="note" aria-label="SMS program disclosures">
+      <ul>
+        <li>Message frequency varies — typically 1–5 messages per reservation event</li>
+        <li>Message and data rates may apply</li>
+        <li>Reply <strong style="color:#c4c4cf;">STOP</strong> to unsubscribe from all SMS messages</li>
+        <li>Reply <strong style="color:#c4c4cf;">HELP</strong> for help or contact <a href="mailto:support@velvetropehq.com">support@velvetropehq.com</a></li>
+        <li>Supported carriers: AT&amp;T, T-Mobile, Verizon, and most major US carriers</li>
+      </ul>
+    </div>
+
+    <p class="not-required">
+      Consent to receive SMS messages is not required as a condition of making a reservation or using the Velvet Rope service.
+    </p>
+
+    <button type="submit" class="btn-submit" id="submitBtn" disabled>
+      Confirm SMS Opt-In
+    </button>
+
+  </form>
+
+  <div class="legal-links">
+    <a href="/privacy">Privacy Policy</a>
+    <a href="/terms">Terms of Service</a>
+    <a href="mailto:support@velvetropehq.com">Contact Us</a>
+  </div>
+
+</div>
+
+<footer>
+  &copy; 2026 John Blaze Inc. &mdash; Velvet Rope. All rights reserved.<br />
+  <a href="/terms">Terms of Service</a> &nbsp;&middot;&nbsp; <a href="/privacy">Privacy Policy</a>
+</footer>
+
+<script>
+(function () {
+  var form = document.getElementById('smsConsentForm');
+  var checkbox = document.getElementById('smsConsent');
+  var submitBtn = document.getElementById('submitBtn');
+  var successBox = document.getElementById('successBox');
+  var fullName = document.getElementById('fullName');
+  var mobilePhone = document.getElementById('mobilePhone');
+  checkbox.addEventListener('change', function () {
+    submitBtn.disabled = !checkbox.checked;
+  });
+  mobilePhone.addEventListener('input', function () {
+    var raw = this.value.replace(/\D/g, '');
+    if (raw.length <= 10) {
+      var formatted = raw;
+      if (raw.length > 6) formatted = '(' + raw.substring(0,3) + ') ' + raw.substring(3,6) + '-' + raw.substring(6);
+      else if (raw.length > 3) formatted = '(' + raw.substring(0,3) + ') ' + raw.substring(3);
+      this.value = formatted;
+    }
+  });
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!fullName.value.trim() || !mobilePhone.value.trim() || !checkbox.checked) return;
+    form.style.display = 'none';
+    successBox.style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+</script>
+
+</body>
+</html>
